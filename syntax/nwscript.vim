@@ -18,11 +18,13 @@ syn keyword nssStorageClass const
 syn keyword nssStructure    struct
 syn keyword nssBoolean      TRUE FALSE
 syn keyword nssConstant     OBJECT_SELF OBJECT_INVALID
+
 syn region  nssString       start=+"+   end=+"+     end=+$+
 syn region  nssComment      start='/\*' end='\*/'
-syn match   nssComment      "//.*S"
-syn match   nssInclude      '#include\s+".+"'
-syn match   nssNumber       "\d+[.]{0,1}\d*[f]{0,1}"
+syn match   nssComment      "//.*$"
+syn match   nssInclude      '^#include\s\+".\+"' contains=nssString
+syn match   nssNumber       '-\=\d\+\(.\d\+f\=\)\='
+syn match   nssNumber       '0x\x\+'
 
 " Standard NWScript Functions
 syn keyword nssFunction main
