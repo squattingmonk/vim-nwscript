@@ -24,8 +24,8 @@ syn region  nssComment      start='/\*' end='\*/'
 syn match   nssComment      "//.*$"
 syn match   nssInclude      '^#include\s\+".\+"' contains=nssString
 syn match   nssFunction     /\w\+\s*(/me=e-1,he=e-1
-syn match   nssNumber       '-\=\d\+\(.\d\+f\=\)\='
-syn match   nssNumber       '0x\x\+'
+syn match   nssNumber       '\(\w\)\@<!-\=\d\+\(.\d\+f\=\)\=\(\w\)\@!'
+syn match   nssNumber       '\(\w\)\@<!0x\x\{1,8}'
 
 " Define the default highlighting.
 hi def link nssType         Type
