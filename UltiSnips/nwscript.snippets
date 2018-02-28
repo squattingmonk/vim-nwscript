@@ -1,0 +1,89 @@
+global !p
+def printopt(opt, default=''):
+	snip.rv = snip.opt('g:nwscript#snippets#' + opt, default)
+endglobal
+
+
+snippet meta "File metadata" b
+// -----------------------------------------------------------------------------
+//    File: ${1:`!v expand('%:t')`}
+//  System: ${2}
+//     URL: ${3:`!p printopt('url')`}
+// Authors: ${4:`!p printopt('author')`}
+// -----------------------------------------------------------------------------
+$0
+endsnippet
+
+snippet url "URL variable expansion"
+`!p printopt('url')`
+endsnippet
+
+snippet auth "Author variable expansion"
+`!p printopt('author')`
+endsnippet
+
+snippet cline "Commented divider line" b
+// -----------------------------------------------------------------------------
+
+endsnippet
+
+snippet cblock "Commented centered text block" b
+// -----------------------------------------------------------------------------
+// `!p snip.rv = ' ' * (38 - len(t[1]) // 2)`${1:Centered Text}
+// -----------------------------------------------------------------------------
+$0
+endsnippet
+
+snippet main "void main function"
+void main()
+{
+	$0
+}
+endsnippet
+
+snippet sc "StartingConditional function"
+int StartingConditional()
+{
+	return $0;
+}    
+endsnippet
+
+snippet inc "Include script" b
+#include "${1}"
+$0
+endsnippet
+
+snippet if "if block" b
+if (${1})
+{
+	${VISUAL}$0
+}
+endsnippet
+
+snippet for "for loop" b
+for (${1:i} = 0; $1 < ${2:count}; ${3:$1++})
+{
+	${VISUAL}$0
+}
+endsnippet
+
+snippet st "struct" b
+struct ${1}
+{
+	$0
+};
+endsnippet
+
+snippet fun "Function definition" b
+${2:void} ${1:FunctionName}(${3})
+{
+	${VISUAL}$0
+}
+endsnippet
+
+snippet fund "Function declaration" b
+// ---< $1 >---
+// ---< `!v expand('%')` >---
+// $0
+${2:void} ${1:FunctionName}(${3});
+endsnippet
