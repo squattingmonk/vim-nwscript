@@ -74,16 +74,16 @@ struct ${1}
 };
 endsnippet
 
-snippet fun "Function definition" b
+snippet fd "Function definition" b
 ${2:void} ${1:FunctionName}(${3})
 {
 	${VISUAL}$0
 }
 endsnippet
 
-snippet fund "Function declaration" b
+snippet fp "Function prototype" b
 // ---< $1 >---
-// ---< `!v expand('%')` >---
+// ---< `!v expand('%:r')` >---
 // $0
 ${2:void} ${1:FunctionName}(${3});
 endsnippet
