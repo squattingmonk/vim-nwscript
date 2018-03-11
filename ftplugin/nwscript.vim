@@ -9,6 +9,12 @@ if !exists("g:nwscript#no_wrap")
     setlocal formatoptions=croqwa2lj
 endif
 
+" Folding support
+if !exists("g:nwscript#no_fold")
+    setlocal foldmethod=syntax
+    setlocal nofoldenable
+endif
+
 " Key commands
 nnoremap <buffer> <localleader>t :call nwscript#ctags#Generate()<cr>
 
