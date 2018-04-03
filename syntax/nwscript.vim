@@ -24,7 +24,7 @@ syn region  nssString       start=+"+   end=+"+     end=+$+
 syn region  nssComment      start='/\*' end='\*/' fold
 syn region  nssComment      start='//'  end='$'
 
-syn match   nssInclude      '^#include\s\+".\+"' contains=nssString
+syn match   nssInclude      '^#.\+' contains=nssString
 syn match   nssFunction     /\w\+\s*(/me=e-1,he=e-1
 syn match   nssNumber       '\(\w\)\@<!-\=\d\+\(.\d\+f\=\)\=\(\w\)\@!'
 syn match   nssNumber       '\(\w\)\@<!0x\x\{1,8}'
