@@ -20,7 +20,7 @@ syn keyword nssBoolean      TRUE FALSE
 syn keyword nssConstant     OBJECT_SELF OBJECT_INVALID
 
 syn region  nssBlock        start="{"   end="}" transparent fold
-syn region  nssString       start=+"+   end=+"+     end=+$+
+syn region  nssString       start=+"+   end=+"+     end=+$+ skip=+\\"+
 syn region  nssComment      start='/\*' end='\*/' fold
 syn region  nssComment      start='//'  end='$'
 
