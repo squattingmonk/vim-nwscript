@@ -4,7 +4,7 @@ def printopt(opt, default=''):
 endglobal
 
 
-snippet meta "File metadata" b
+snippet "^meta" "File metadata" rbA
 // -----------------------------------------------------------------------------
 //    File: ${1:`!v expand('%:t')`}
 //  System: ${2}
@@ -22,33 +22,33 @@ snippet auth "Author variable expansion"
 `!p printopt('author')`
 endsnippet
 
-snippet cline "Commented divider line" b
+snippet "^cline" "Commented divider line" rbA
 // -----------------------------------------------------------------------------
 
 endsnippet
 
-snippet cblock "Commented centered text block" b
+snippet "^cblock" "Commented centered text block" rbA
 // -----------------------------------------------------------------------------
 // `!p snip.rv = ' ' * (38 - len(t[1]) // 2)`${1:Centered Text}
 // -----------------------------------------------------------------------------
 $0
 endsnippet
 
-snippet main "void main function"
+snippet "^main" "void main function" rbA
 void main()
 {
 	$0
 }
 endsnippet
 
-snippet sc "StartingConditional function"
+snippet "^cond" "StartingConditional function" rbA
 int StartingConditional()
 {
 	return $0;
 }    
 endsnippet
 
-snippet inc "Include script" b
+snippet "^\#inc" "Include script" rbA
 #include "${1}"
 $0
 endsnippet
@@ -74,14 +74,14 @@ struct ${1}
 };
 endsnippet
 
-snippet fd "Function definition" b
+snippet "^funcd" "Function definition" rbA
 ${1:void} ${2:FunctionName}(${3})
 {
 	${VISUAL}$0
 }
 endsnippet
 
-snippet fp "Function prototype" b
+snippet "^funcp" "Function prototype" rbA
 // ---< ${1:FunctionName} >---
 // ---< `!v expand('%:t:r')` >---
 // $4
