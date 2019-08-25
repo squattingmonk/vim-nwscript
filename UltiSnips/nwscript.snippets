@@ -1,54 +1,18 @@
-global !p
-def printopt(opt, default=''):
-	snip.rv = snip.opt('g:nwscript#snippets#' + opt, default)
-endglobal
-
-
-snippet "^meta" "File metadata" rbA
-// -----------------------------------------------------------------------------
-//    File: ${1:`!v expand('%:t')`}
-//  System: ${2}
-//     URL: ${3:`!p printopt('url')`}
-// Authors: ${4:`!p printopt('author')`}
-// -----------------------------------------------------------------------------
-$0
-endsnippet
-
-snippet url "URL variable expansion"
-`!p printopt('url')`
-endsnippet
-
-snippet auth "Author variable expansion"
-`!p printopt('author')`
-endsnippet
-
-snippet "^cline" "Commented divider line" rbA
-// -----------------------------------------------------------------------------
-
-endsnippet
-
-snippet "^cblock" "Commented centered text block" rbA
-// -----------------------------------------------------------------------------
-// `!p snip.rv = ' ' * (38 - len(t[1]) // 2)`${1:Centered Text}
-// -----------------------------------------------------------------------------
-$0
-endsnippet
-
-snippet "^main" "void main function" rbA
+snippet main "void main function" b
 void main()
 {
 	$0
 }
 endsnippet
 
-snippet "^cond" "StartingConditional function" rbA
+snippet cond "StartingConditional function" b
 int StartingConditional()
 {
 	return $0;
-}    
+}
 endsnippet
 
-snippet "^\#inc" "Include script" rbA
+snippet inc "Include script" b
 #include "${1}"
 $0
 endsnippet
@@ -74,14 +38,14 @@ struct ${1}
 };
 endsnippet
 
-snippet "^funcd" "Function definition" rbA
+snippet funcd "Function definition" b
 ${1:void} ${2:FunctionName}(${3})
 {
 	${VISUAL}$0
 }
 endsnippet
 
-snippet "^funcp" "Function prototype" rbA
+snippet funcp "Function prototype" b
 // ---< ${1:FunctionName} >---
 // ---< `!v expand('%:t:r')` >---
 // $4
