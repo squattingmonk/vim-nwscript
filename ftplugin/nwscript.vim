@@ -12,7 +12,7 @@ endif
 " Folding support
 if !exists("g:nwscript#no_fold")
     setlocal foldmethod=syntax
-    setlocal nofoldenable
+    setlocal foldenable
 endif
 
 " Key commands
