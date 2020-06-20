@@ -11,9 +11,7 @@ This is an add-on for vim providing support for editing NWScript.
 
 ## Requirements
 - Vim/Neovim
-- Python for UltiSnips support
-- [Universal Ctags](https://github.com/universal-ctags/ctags) or [Exuberant 
-  Ctags](http://ctags.sourceforge.net/) for ctags support
+- [Universal Ctags](https://github.com/universal-ctags/ctags) for ctags support
 
 ## Installation
 If you use [vim-plug](https://github.com/junegunn/vim-plug), add the following 
@@ -26,21 +24,69 @@ Plug 'squattingmonk/vim-nwscript'
 Then run `:PlugInstall`.
 
 ## Customization
+This plugin has sensible (read: opinionated) defaults. If you don't like one of 
+the behaviors below, you can change it in your `.vimrc` using one of the 
+settings below (default values are shown).
 
-### Comment Wrapping
+This plugin is divided into several modules and will be expanded over time. By 
+default, all modules are enabled, but you can enable or disable them 
+selectively in your `.vimrc`:
+
+```VimL
+" Whitelist modules
+let g:nwscript#modules#enabled = ['ctags', 'fold', 'format']
+
+" Blacklist modules
+let g:nwscript#modules#disabled = []
+```
+
+### format module
 By default, comments will auto-wrap at column 80, preserving any indentation. 
-If you don't want this behavior, add the following to your `.vimrc`:
+Pressing `<cr>` (insert mode) or `o`/`O` (normal mode) will continue a comment 
+block.
 
-```
-let g:nwscript#no_wrap = 1
+```VimL
+let g:nwscript#format#textwidth = 80
+let g:nwscript#format#options = 'croqwa2lj'
 ```
 
-### ctags
-To generate ctags for your script, press `<localleader>t`. This runs using C's 
-language parser. To use your own command instead, add the following to your 
+All trailing whitespace is removed when saving the file.
+
+```VimL
+let g:nwscript#format#whitespace = 1
+```
+
+### fold module
+Code between brackets is automatically folded.
+
+```VimL
+let g:nwscript#fold#method = 'syntax'
+let g:nwscript#fold#level = &foldlevel
+let g:nwscript#fold#column = 1
+```
+
+### ctags module
+This plugin comes with an options file to generate tags for NWScript files. If 
+you wish to use your own ctags file, you can set the path to it in your 
 `.vimrc`:
 
-````
-let g:nwscript#ctags#command = 'your command here`
-````
+```VimL
+let g:nwscript#ctags#file = '/your/path/to/nwscript.ctags'
+```
 
+To generate a tags file, you can run `:NWScriptTagGen` or press 
+`<localleader>tt` while in normal mode. Alternatively, you can set your own 
+mapping:
+
+```VimL
+let g:nwscript#ctags#hotkey = '<localleader>tt'
+
+" or ...
+
+nmap <localleader>tt <Plug>NWScriptTagGen
+```
+
+The tags file will be placed into your project's git root, 
+[nasher](https://github.com/squattingmonk/nasher.nim) root, or the directory of 
+the current file if no git or nasher project was detected. The generation is 
+recursive, so any nwscript file in the project will be searched for tags.

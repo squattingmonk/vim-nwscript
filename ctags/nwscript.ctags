@@ -1,0 +1,16 @@
+--langdef=nwscript
+--map-nwscript=+.nss
+--kinddef-nwscript=c,constant,constant definitions
+--kinddef-nwscript=p,prototype,function prototypes
+--kinddef-nwscript=f,function,function definitions
+
+--regex-nwscript=/^\s*\/\///{exclusive}
+--regex-nwscript=/^\s*void\s+main\s*\(\)///{exclusive}
+--regex-nwscript=/^\s*int\s+StartingConditional\s*\(\)///{exclusive}
+--regex-nwscript=/^\s*const\s+\w+\s+(\w+)/\1/c/
+--regex-nwscript=/^\s*(struct\s+\w+|void|action|int|float|string|object|effect|itemproperty|location|vector)\s+(\w+)\s*\([^\)]*\)\s*;/\2/p/
+--regex-nwscript=/^\s*(struct\s+\w+|void|action|int|float|string|object|effect|itemproperty|location|vector)\s+(\w+)\s*\([^\)]*\)[^;]*$/\2/f/
+
+--exclude=.nasher
+--fields=+Ktn
+--pattern-length-limit=40
