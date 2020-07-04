@@ -14,6 +14,9 @@ augroup nwscript
     autocmd!
 augroup END
 
+" Translate #include statements to nwscript file
+setlocal suffixesadd=.nss
+
 " Modules: {{{1
 " We initialize stuff depending on the values of g:nwscript#modules#enabled and
 " g:nwscript#modules#disabled so this ftplugin is simply a loader.
@@ -27,8 +30,5 @@ endfor
 for module in s:enabled_modules
     exe 'call nwscript#' . module . '#Init()'
 endfor
-
-" Translate #include statements to nwscript file
-setlocal includeexpr=substitute(v:fname,'$','.nss','')
 
 " vim: set foldmethod=marker:
