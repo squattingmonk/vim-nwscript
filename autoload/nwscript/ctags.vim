@@ -57,21 +57,23 @@ endfunction
 " Finds the root of the nasher or git repo; if not a repo, uses the directory
 " of the current file. This directory will hold the generated tag file.
 function! nwscript#ctags#GetProjectRoot() abort
-    let l:file = expand('%:p')
+    let l:file = expand('%:p:h')
     let l:gitroot = finddir('.git', l:file . ';')
     let l:nasherroot = findfile('nasher.cfg', l:file . ';')
 
     if !empty(l:gitroot)
-        let l:file = l:gitroot
+        let l:file = fnamemodify(l:gitroot, ':p:h:h')
+        echom 'Using git root'
     elseif !empty(l:nasherroot)
-        let l:file = l:nasherroot
+        let l:file = fnamemodify(l:nasherroot, ':p:h')
+        echom 'Using nasher root'
     endif
-    return fnameescape(fnamemodify(l:file, ':h'))
+    return fnameescape(l:file)
 endfunction
 
 " GetCmd: {{{1
 " Create the proper ctags command
-function! s:GetCmd()
+function! s:GetCmd() abort
     let l:cmd = 'ctags -R -o .tags --languages=nwscript'
 
     " Don't source the ctags file if the user has already defined one
@@ -83,7 +85,7 @@ endfunction
 
 " s:Generate: {{{1
 " Do the actual file generation
-function! s:Generate(cmd, dir)
+function! s:Generate(cmd, dir) abort
     execute 'cd ' . a:dir
     echo 'Generating tagile for ' . a:dir
     call system(a:cmd)
@@ -94,7 +96,7 @@ endfunction
 " Generates a tag file for the open script. The tag file is created in the
 " project root. If a ctags file for nwscript has not already been defined by
 " the user, the one bundled with the plugin will be used instead.
-function! nwscript#ctags#Generate()
+function! nwscript#ctags#Generate() abort
     let l:cmd = s:GetCmd()
     let l:dir = nwscript#ctags#GetProjectRoot()
     call s:Generate(l:cmd, l:dir)
@@ -102,7 +104,7 @@ endfunction
 
 " GenerateAll: {{{1
 " Generates a tag file for each directory in g:nwscript#ctags#includes.
-function! nwscript#ctags#GenerateAll()
+function! nwscript#ctags#GenerateAll() abort
     let l:cmd = s:GetCmd()
     for dir in g:nwscript#ctags#includes
         if isdirectory(dir)
