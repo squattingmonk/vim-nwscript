@@ -9,7 +9,8 @@ if exists("b:current_syntax")
 endif
 
 syn keyword nssType         void int float string object location
-syn keyword nssType         effect itemproperty action vector sqlquery
+syn keyword nssType         effect itemproperty action vector
+syn keyword nssType         sqlquery cassowary json
 syn keyword nssStatement    break return continue
 syn keyword nssConditional  if else switch
 syn keyword nssRepeat       while for do
