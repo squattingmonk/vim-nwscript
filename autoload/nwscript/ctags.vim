@@ -9,7 +9,7 @@ function! nwscript#ctags#Init() abort
     if !exists('g:nwscript#ctags#file')
         let g:nwscript#ctags#file = g:nwscript#plugin#path . '/ctags/nwscript.ctags'
     endif
-    
+
     " Default script source directory {{{2
     if !exists('g:nwscript#ctags#includes')
         let g:nwscript#ctags#includes = [$XDG_DATA_HOME . '/nwscript']
@@ -63,10 +63,8 @@ function! nwscript#ctags#GetProjectRoot() abort
 
     if !empty(l:gitroot)
         let l:file = fnamemodify(l:gitroot, ':p:h:h')
-        echom 'Using git root'
     elseif !empty(l:nasherroot)
         let l:file = fnamemodify(l:nasherroot, ':p:h')
-        echom 'Using nasher root'
     endif
     return fnameescape(l:file)
 endfunction
