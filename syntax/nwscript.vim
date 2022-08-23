@@ -26,6 +26,7 @@ syn region  nssComment      start='/\*' end='\*/' fold
 syn region  nssComment      start='//'  end='$'
 
 setlocal commentstring=//%s
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,bO:///,O://
 
 syn match   nssInclude      '^#.\+' contains=nssString
 syn match   nssFunction     /\w\+\s*(/me=e-1,he=e-1
